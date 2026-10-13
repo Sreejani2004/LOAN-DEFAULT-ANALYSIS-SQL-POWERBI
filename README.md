@@ -15,4 +15,5 @@ Analyzed 39,717 loan records from the Lending Club Dataset(2007-2011) to examine
 
 **KEY FINDINGS**
 The analysis examines default rates across loan grades and borrower and loan characteristics to identify patterns in loan repayment outcomes.
-<img width="1352" height="737" alt="image" src="https://github.com/user-attachments/assets/aa7aeb2f-f636-4600-a778-510b784d9925" />
+<img width="1347" height="745" alt="image" src="https://github.com/user-attachments/assets/1889cea2-d650-4aa9-ad51-b4fd638ceb56" />
+
