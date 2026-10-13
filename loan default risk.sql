@@ -189,13 +189,3 @@ SELECT
     ) AS risk_rank
 FROM grade_rates
 ORDER BY risk_rank;
-SHOW GLOBAL VARIABLES LIKE 'port';
-SELECT CURRENT_USER(), @@port;
-SELECT USER(), CURRENT_USER();
-CREATE USER 'powerbi_user'@'localhost'
-IDENTIFIED BY 'SREEJANI@2004';
-
-GRANT SELECT ON loan_analysis.*
-TO 'powerbi_user'@'localhost';
-
-FLUSH PRIVILEGES;
