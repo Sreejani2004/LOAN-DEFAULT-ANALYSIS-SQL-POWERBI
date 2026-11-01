@@ -20,20 +20,27 @@ FROM loan_data;
 
 SELECT
     COUNT(*) AS total_records,
-    SUM(CASE WHEN default_flag = 1 THEN 1 ELSE 0 END)
-        AS defaulted_loans,
-    SUM(CASE WHEN default_flag = 0 THEN 1 ELSE 0 END)
-        AS fully_paid_loans,
-    SUM(CASE WHEN default_flag IS NULL THEN 1 ELSE 0 END)
-        AS loans_without_final_flag,
+
+    SUM(CASE WHEN loan_status = 'Charged Off'
+        THEN 1 ELSE 0 END) AS defaulted_loans,
+
+    SUM(CASE WHEN loan_status = 'Fully Paid'
+        THEN 1 ELSE 0 END) AS fully_paid_loans,
+
+    SUM(CASE WHEN loan_status = 'Current'
+        THEN 1 ELSE 0 END) AS loans_without_final_outcome,
+
     ROUND(
-        100.0 * SUM(CASE WHEN default_flag = 1 THEN 1 ELSE 0 END)
+        100.0 * SUM(CASE WHEN loan_status = 'Charged Off'
+            THEN 1 ELSE 0 END)
         / NULLIF(
-            SUM(CASE WHEN default_flag IN (0, 1) THEN 1 ELSE 0 END),
+            SUM(CASE WHEN loan_status IN ('Fully Paid', 'Charged Off')
+                THEN 1 ELSE 0 END),
             0
         ),
         2
     ) AS default_rate_pct
+
 FROM loan_data;
 
 SELECT
@@ -41,6 +48,7 @@ SELECT
     COUNT(*) AS total_loans,
     SUM(loan_status = 'Charged Off') AS defaulted_loans,
     SUM(loan_status = 'Fully Paid') AS fully_paid_loans,
+    SUM(loan_status = 'Current') AS current_loans,
     ROUND(
         100.0 * SUM(loan_status = 'Charged Off')
         / NULLIF(
