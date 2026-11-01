@@ -158,7 +158,7 @@ SELECT
     SUM(loan_amnt) AS total_amount_issued
 FROM loan_data
 WHERE STR_TO_DATE(issue_date, '%d-%m-%Y') IS NOT NULL
-GROUP BY YEAR(STR_TO_DATE(issue_date, '%d-%m-%Y'))
+GROUP BY issue_year
 ORDER BY issue_year;
 
 
