@@ -35,15 +35,6 @@ SELECT
         2
     ) AS default_rate_pct
 FROM loan_data;
-SELECT
-    SUM(loan_status = 'Charged Off') AS defaults,
-    SUM(loan_status IN ('Fully Paid', 'Charged Off')) AS loans_with_known_outcomes,
-    ROUND(
-        100.0 * SUM(loan_status = 'Charged Off')
-        / SUM(loan_status IN ('Fully Paid', 'Charged Off')),
-        2
-    ) AS default_rate
-FROM loan_data;
 
 SELECT
     grade,
